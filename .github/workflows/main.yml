@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: ["windows", "HTML5"]
+        platform: ["Windows Desktop", "HTML5"]
     steps:
       - uses: actions/checkout@v2
         with:
