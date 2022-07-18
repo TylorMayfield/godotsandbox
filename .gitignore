@@ -1,6 +1,12 @@
-docs/_build/
-# Godot-specific ignores
 .import/
-
-# Mono-specific ignores
+*.translation
 .mono/
+data_*/
+export.cfg
+export_presets.cfg
+
+bin/
+lib/
+
+Builds/
+Notes/
