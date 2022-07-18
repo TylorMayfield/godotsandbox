@@ -24,15 +24,15 @@ var gravity = gravity_strength
 
 var friction = 6.0
 
-var move_speed = 15.0
-var run_acceleration = 20.0
+var move_speed = 30.0
+var run_acceleration = move_speed * 1.5
 var run_deacceleration = 12.0
 var air_acceleration = 0.7
 var air_deacceleration = 2.0
 var air_control = 0.3
 var side_strafe_acceleration = 50.0
 var side_strafe_speed = 1.0
-var move_scale = 1.0
+var move_scale = 0.35
 
 var ground_snap_tolerance = 1
 

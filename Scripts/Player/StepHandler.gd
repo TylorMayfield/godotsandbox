@@ -28,7 +28,7 @@ func _just_landed(landing_type):
 	elif landing_type == "HARD":
 		pass
 		
-func physics_process(delta):
+func physics_process(_delta):
 	var just_jumped = Input.is_action_just_pressed("jump")
 	var h_pos = Vector2(_player.translation.x, _player.translation.z)
 	

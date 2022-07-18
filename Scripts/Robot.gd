@@ -4,12 +4,14 @@ class_name Robot
 
 onready var _player = get_tree().get_nodes_in_group("player")[0]
 
-const player_range = 30
+const player_range = 12
 const dart_speed = 700
+const robot_field_of_view = 15
 var _rng = RandomNumberGenerator.new()
 var _last_dart = 0
 var _defeated = false
 var _interested = false
+
 
 func _physics_process(delta):
 	if not _defeated:
@@ -25,10 +27,10 @@ func _physics_process(delta):
 					Audio.play("Robot/Awaken/A", translation)
 					_interested = true
 				var des_dir = PI - (Vector2(a.x, a.z) - Vector2(b.x, b.z)).angle() - rotation.y
-				var amt = des_dir - $robot.rotation.y
-				$robot.rotation.y += amt * delta
+				var angle_to_player = des_dir - $robot.rotation.y
+				$robot.rotation.y += angle_to_player * delta
 			
-				if time_since_dart > dart_speed and abs(amt) < 0.5:
+				if time_since_dart > dart_speed and abs(angle_to_player) < 0.5:
 					_last_dart = OS.get_ticks_msec()
 					Audio.play("Robot/Fire/A", translation)
 					_player.hurt(2, translation)
@@ -42,7 +44,7 @@ func _physics_process(delta):
 		else:
 			$robot/Light.light_energy = 0
 			
-		if abs(rotation.x) > deg2rad(40) or abs(rotation.z) > deg2rad(40):
+		if abs(rotation.x) > deg2rad(robot_field_of_view) or abs(rotation.z) > deg2rad(robot_field_of_view):
 			Audio.play("Robot/Defeat/A", translation)
 			$robot/Light.light_energy = 0
 			_defeated = true
