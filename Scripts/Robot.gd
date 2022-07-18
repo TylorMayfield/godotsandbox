@@ -12,6 +12,10 @@ var _last_dart = 0
 var _defeated = false
 var _interested = false
 
+var audio_robot_awake = ["Robot/Awaken/A"]
+var audio_robot_shoot = ["Robot/Fire/A"]
+var audio_robot_dead = ["Robot/Defeat/A"]
+
 
 func _physics_process(delta):
 	if not _defeated:
@@ -24,7 +28,7 @@ func _physics_process(delta):
 			$RayCast.cast_to = (a - b).rotated(Vector3.UP, -rotation.y)
 			if $RayCast.is_colliding() and $RayCast.get_collider().is_in_group("player"):
 				if not _interested:
-					Audio.play("Robot/Awaken/A", translation)
+					Audio.play(audio_robot_awake[randi() % audio_robot_awake.size()], translation)
 					_interested = true
 				var des_dir = PI - (Vector2(a.x, a.z) - Vector2(b.x, b.z)).angle() - rotation.y
 				var angle_to_player = des_dir - $robot.rotation.y
@@ -32,8 +36,10 @@ func _physics_process(delta):
 			
 				if time_since_dart > dart_speed and abs(angle_to_player) < 0.5:
 					_last_dart = OS.get_ticks_msec()
-					Audio.play("Robot/Fire/A", translation)
-					_player.hurt(2, translation)
+					Audio.play(audio_robot_shoot[randi() % audio_robot_shoot.size()], translation)
+					var hit = _rng.randi_range(0,1)
+					if hit:
+						_player.hurt(2, translation)
 			else:
 				_interested = false
 		else:
@@ -45,7 +51,7 @@ func _physics_process(delta):
 			$robot/Light.light_energy = 0
 			
 		if abs(rotation.x) > deg2rad(robot_field_of_view) or abs(rotation.z) > deg2rad(robot_field_of_view):
-			Audio.play("Robot/Defeat/A", translation)
+			Audio.play(audio_robot_dead[randi() % audio_robot_dead.size()], translation)
 			$robot/Light.light_energy = 0
 			_defeated = true
 		elif abs(rotation.x) > deg2rad(3) or abs(rotation.z) > deg2rad(3):
