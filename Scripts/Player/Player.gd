@@ -60,7 +60,8 @@ func _process(delta):
 		$BallGunAnimator.stop()
 		$BallGunAnimator.play("BallGunLaunch")
 		
-		Audio.play_rand_player("Gun/Fire", "gun_fire")
+		#Audio.play_rand_player("Gun/Fire", "gun_fire")
+		Audio.play_rand_player("Gun/Shoot", "gun_shoot")
 		
 	var cursor = OS.window_size / 2
 	var target = Vector2(OS.window_size.x / 2, OS.window_size.y - 20)
