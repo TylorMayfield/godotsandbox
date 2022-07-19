@@ -7,6 +7,7 @@ export var init_head_rot = 0
 var Controller = load("res://Scripts/Player/Controller.gd")
 var StepHandler = load("res://Scripts/Player/StepHandler.gd")
 onready var _ball = preload("res://Scenes/Sprites/Ball.tscn")
+
 onready var _health_label = get_node("CanvasLayer/Health")
 
 var _last_attack_pos = Vector3.ZERO
@@ -25,10 +26,12 @@ func _ready():
 	controller.init(self, $Head, $CollisionShape)
 	step_handler.init(self, $Feet)
 	$BallGunAnimator.play("BallGunIdle")
+	capture_mouse()
 
 func _physics_process(delta):
-	step_handler.physics_process(delta)
-	controller.process_movement(delta)
+	if not paused:
+		step_handler.physics_process(delta)
+		controller.process_movement(delta)
 
 func _process(delta):
 	var just_paused = Input.is_action_just_pressed("pause")
@@ -51,8 +54,8 @@ func _process(delta):
 		var ball = _ball.instance()
 		var direction = ($Head/B.global_transform.origin - $Head/A.global_transform.origin).normalized()
 		ball.translation = $Head.global_transform.origin + direction * 1
-		ball.translation.y -= 0.5
-		ball.apply_impulse(Vector3.ZERO, direction * 120 + Vector3.UP * 8)
+		ball.translation.y -= .25
+		ball.apply_impulse(Vector3.ZERO, direction * 120 + Vector3.UP * 1)
 		get_tree().root.add_child(ball)
 		$BallGunAnimator.stop()
 		$BallGunAnimator.play("BallGunLaunch")
@@ -68,7 +71,7 @@ func _process(delta):
 		dir.x *= -1
 	$CanvasLayer/HurtDirection.position = cursor + dir * 30
 	$CanvasLayer/HurtDirection.rotation = dir.angle() + PI / 2
-	#$CanvasLayer/Debug.text = "FPS: " + str(Engine.get_frames_per_second()) + "\nON FLOOR: " + str(is_on_floor())
+	$CanvasLayer/Debug.text = "FPS: " + str(Engine.get_frames_per_second()) + "\nON FLOOR: " + str(is_on_floor())
 	
 	controller.process(delta)
 

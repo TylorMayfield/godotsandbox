@@ -14,9 +14,9 @@ const walk_speed = 6
 const sprint_speed = 10
 const crouch_speed = 2
 const noclip_speed = 40
-const jump_speed = 5.3
+const jump_speed = 7.54
 const noclip_hyper_speed = 200
-const gravity_strength = 15
+const gravity_strength = 25
 
 var x_mouse_sensitivity = .1
 
@@ -27,9 +27,9 @@ var friction = 6.0
 var move_speed = 30.0
 var run_acceleration = move_speed * 1.5
 var run_deacceleration = 12.0
-var air_acceleration = 0.7
-var air_deacceleration = 2.0
-var air_control = 0.3
+var air_acceleration = 1.2
+var air_deacceleration = .01
+var air_control = 0.75
 var side_strafe_acceleration = 50.0
 var side_strafe_speed = 1.0
 var move_scale = 0.35
@@ -152,7 +152,7 @@ func _air_move(delta):
 	wishdir -= _head.transform.basis.z * cmd.forward_move
 
 	var wishspeed = wishdir.length()
-	wishspeed *= move_speed
+	wishspeed *= move_speed * wishvel
 
 	wishdir = wishdir.normalized()
 	move_direction_norm = wishdir
