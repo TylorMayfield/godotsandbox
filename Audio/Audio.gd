@@ -16,14 +16,13 @@ func play_rand(path: String, pos: Vector3, id: String = ""):
 		last_steps_tracker[id] = ["", ""]
 		
 	var sfx = get_node(path).get_children()
-	while true:
-		var s = sfx[floor(_rng.randf() * sfx.size())] as AudioStreamPlayer3D
-		if not last_steps.has(s.name):
-			last_steps.pop_front()
-			last_steps.append(s.name)
-			s.translation = pos
-			s.play()
-			return s.name
+	
+	
+	var s = sfx[floor(_rng.randf() * sfx.size())] as AudioStreamPlayer3D
+	print(s.name)
+	s.translation = pos
+	s.play()
+
 			
 func play_rand_player(path: String, id: String = ""):
 	play_rand(path, get_tree().get_nodes_in_group("player")[0].translation, id)

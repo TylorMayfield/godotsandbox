@@ -59,9 +59,12 @@ func _process(delta):
 		get_tree().root.add_child(ball)
 		$BallGunAnimator.stop()
 		$BallGunAnimator.play("BallGunLaunch")
-		
-		#Audio.play_rand_player("Gun/Fire", "gun_fire")
-		Audio.play_rand_player("Gun/Shoot", "gun_shoot")
+		#Audio.play_rand_player(_feet.step_audio_path, "step")
+		#print(get_node("Audio/Gun/Fire").get_children())
+		#MusicManager.PlayMusic(0)
+		Audio.play_rand_player("Gun/Shoot", "Gun/Shoot")
+		#pewpew.stop()
+	
 		
 	var cursor = OS.window_size / 2
 	var target = Vector2(OS.window_size.x / 2, OS.window_size.y - 20)

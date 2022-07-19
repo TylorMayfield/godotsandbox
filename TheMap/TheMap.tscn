@@ -87,9 +87,6 @@ transform = Transform( -4.37114e-08, -1, 0, 0.967758, -4.2302e-08, 0.251884, -0.
 [node name="Barrel14" parent="Props/Barrels" instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, -1, 0, 0.967758, -4.2302e-08, 0.251884, -0.251884, 1.10102e-08, 0.967758, 0.88852, 2.09401, -2.53704 )
 
-[node name="Barrel13" parent="Props/Barrels" instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, -1, 0, 0.967758, -4.2302e-08, 0.251884, -0.251884, 1.10102e-08, 0.967758, 0.763298, 1.84128, -5.82263 )
-
 [node name="Barrel15" parent="Props/Barrels" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 64.0942, -4.5823, -7.55995 )
 
@@ -359,3 +356,6 @@ shape = SubResource( 4 )
 [node name="CollisionShape4" type="CollisionShape" parent="StepArea/Metal"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -54.6508, 6.73059, -56.9572 )
 shape = SubResource( 5 )
+
+[node name="Barrel13" parent="." instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, -1, 0, 0.967758, -4.2302e-08, 0.251884, -0.251884, 1.10102e-08, 0.967758, 0.768531, 1.75463, -5.84187 )

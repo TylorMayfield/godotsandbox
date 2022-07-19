@@ -50,6 +50,7 @@ func physics_process(_delta):
 		if move_dist > move_dist_until_step:
 			move_dist = 0
 			Audio.play_rand_player(_feet.step_audio_path, "step")
+			print(_feet.step_audio_path)
 	else:
 		is_in_air = true
 		

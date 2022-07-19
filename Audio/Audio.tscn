@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Assets/Audio/Steps/Default/a.wav" type="AudioStream" id=1]
 [ext_resource path="res://Assets/Audio/Steps/Default/c.wav" type="AudioStream" id=2]
@@ -43,6 +43,7 @@
 [ext_resource path="res://Assets/Audio/Steps/Metal/C.wav" type="AudioStream" id=41]
 [ext_resource path="res://Assets/Audio/Steps/Metal/F.wav" type="AudioStream" id=42]
 [ext_resource path="res://Assets/Audio/Steps/Metal/G.wav" type="AudioStream" id=43]
+[ext_resource path="res://Assets/Audio/Gun/Shoot/A.wav" type="AudioStream" id=44]
 
 [node name="Audio" type="Node"]
 script = ExtResource( 12 )
@@ -121,6 +122,11 @@ stream = ExtResource( 10 )
 
 [node name="F" type="AudioStreamPlayer3D" parent="Gun/Fire"]
 stream = ExtResource( 8 )
+
+[node name="Shoot" type="Node" parent="Gun"]
+
+[node name="A" type="AudioStreamPlayer3D" parent="Gun/Shoot"]
+stream = ExtResource( 44 )
 
 [node name="Ball" type="Node" parent="."]
 
